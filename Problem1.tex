@@ -1,0 +1,69 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+% \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+% \usepackage{lastpage}
+% \usepackage{enumerate}
+\usepackage{mathrsfs}
+% \usepackage{xcolor}
+% \usepackage{graphicx}
+% \usepackage{listings}
+% \usepackage{hyperref}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\newcommand\course{SOEN 6011}
+\newcommand\hwnumber{1}
+\newcommand\NetIDa{Smit Pateliya}
+\newcommand \NetIDb{40202779}
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{Smit Pateliya\\40202779}                 
+% \chead{\textbf{\Large Problem \hwnumber}}
+\rhead{SOEN 6011 \\1st July 2022}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+\section{Introduction of Beta Function B(p,q)}
+There are two most popular functions in Mathematics: Gamma and Beta functions. Gamma function is a single variable function, while Beta is two-variable function. Here, we will talk about Beta function in detail. Beta function is often as known as the first type of Euler's integrals. We often use $\beta$ notation to represent it.
+
+\subsection{Beta Function Definition}
+Beta Function is one kind of a function that is classified as the first type of Euler's integrals. It is defined in the real numbers domain. It is represented by B(p,q), where p and q are real numbers.
+
+\subsection{Beta Function Formula}
+The Beta function is derived by as follows:\cite{BetaFunctionIntroduction}
+
+\[B(p,q)=\int_{0}^{1} t^{p-1} {(1-t)}^{q-1} dt\]
+
+The domain of the function are $p \in \mathbb R: p > 0$ and $q \in \mathbb R : q > 0$. The co-domain of the function are $p \in \mathbb R: p > 0$ and $q \in \mathbb R : q > 0$\\
+Because of its relation with Gamma Function and Factorial function, it is very important in Mathematics, Calculus and Analysis. Many complex integrals can be deduced and reduced to similar expressions using Beta Function.
+
+\section{Properties of Beta Function}
+\begin{itemize}
+    \item Beta Function is Symmetric function \[B(p,q) = B(q,p)\]
+    \item Beta Function can be expressed in the different form.\cite{BetaFunctionForms}
+    \[B(p,q) = 2 \int_{0}^{\frac{\pi}{2}} \sin^{2p-1} \theta \cos^{2q-1} \theta d\theta\]
+    \[B(p,q) = \int_{0}^{\infty} \frac{t^{p-1}}{(1+t)^{p+q}} dt\]
+    \[B(p,q) = \int_{0}^{1} \frac{t^{p-1}+t^{q-1}}{(1+t)^{p+q}} dt\]
+    \item Beta can be expressed with the help of the Gamma function.
+    \[B(p,q) = \frac{\Gamma p \Gamma q}{\Gamma (p+q)}\]
+    \item Beta Function also possesses the Recurrence Relationship Property.
+    \[B(p+1,q) = B(p,q) \frac{p}{p+q}\]
+    \item Beta Function can be expressed with the help of the Factorial.
+    \[B(p,q) = \frac{(p-1)!(q-1)!}{(p+q-1)!}\]
+\end{itemize}
+
+\begin{thebibliography}{plain}
+\bibitem{BetaFunctionForms}
+Beta Function Accessed: 02-07-2022 URL: https://mathworld.wolfram.com/BetaFunction.html
+\bibitem{BetaFunctionIntroduction}
+Beta Function Accessed: 01-07-2023 URL: https://byjus.com/maths/beta-function/
+\end{thebibliography}
+\end{document}
