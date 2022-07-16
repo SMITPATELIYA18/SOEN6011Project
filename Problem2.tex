@@ -1,0 +1,102 @@
+\documentclass[12pt,report]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{enumitem}
+% \usepackage{lastpage}
+\usepackage{enumerate}
+
+% \usepackage{mathrsfs}
+% \usepackage{xcolor}
+% \usepackage{graphicx}
+% \usepackage{listings}
+% \usepackage{hyperref}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\newcommand\course{SOEN 6011}
+\newcommand\hwnumber{1}
+\newcommand\NetIDa{Smit Pateliya}
+\newcommand \NetIDb{40202779}
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{Smit Pateliya\\40202779}                 
+% \chead{\textbf{\Large Problem \hwnumber}}
+\rhead{SOEN 6011 \\1st July 2022}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+\section{Requirements of Beta Function}
+\subsection{Identifier - R1}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: } R1
+    \item \textbf{Type: } Functional Requirements
+    \item \textbf{Description: } The function needs two arguments $p$ and $q$ to evaluate function.
+    \item \textbf{Rationale: } $p$ and $q$
+\end{itemize}
+\subsection{Identifier - R2}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: } R2
+    \item \textbf{Type: } Functional Requirements
+    \item \textbf{Description: } The two variable $p$ and $q$ which we have defined in the R1, needs to be positive real numbers.
+    \item \textbf{Rationale: } $p \geq 0$ and $q \geq 0$
+\end{itemize}
+\subsection{Identifier - R3}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: }R3
+    \item \textbf{Type: } Functional Requirements
+    \item \textbf{Description: } The co-domain of function is $\mathbb R+$.
+    \item \textbf{Rationale: } $B(p,q) \geq 0$
+\end{itemize}
+\subsection{Identifier - R4}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R4}
+    \item \textbf{Type: }Functional Requirements
+    \item \textbf{Description: }If the domain belongs to $\mathbb Z^+$, then we can evaluate beta function with the help of the Gamma function.
+    \item \textbf{Rationale: }$\{\forall p,q \in \mathbb Z^+ \mid B(p,q) = \frac{\Gamma p \Gamma q}{\Gamma(p+q)}\}$\cite{BetaFunctionPositive}
+\end{itemize}
+\subsection{Identifier - R5}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R5}
+    \item \textbf{Type: }Functional Requirements
+    \item \textbf{Description: }We need a supporting function to calculate the value of X raised to the power Y, if we need result of the Beta Function for positive real numbers as input. Therefore, we need to create power function $power(x,y)$ to calculate $X^Y$.
+\end{itemize}
+\subsection{Identifier - R6}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R6}
+    \item \textbf{Type: }Functional Requirements
+    \item \textbf{Description: }The two variable $p and q$ for beta function can be equal or cannot be equal.
+    \item \textbf{Rationale: }$p = q$ or $p\neq q$
+\end{itemize}
+\subsection{Identifier - R7}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R7}
+    \item \textbf{Type: }Non-functional Requirements
+    \item \textbf{Description: }The method which use to calculate the Beta Function, should be able to calculate result in efficient way for large positive inputs for $p$ and $q$.
+\end{itemize}
+\subsection{Identifier - R8}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R8}
+    \item \textbf{Type: }Non-functional Requirements
+    \item \textbf{Description: }We need a way to store large decimal values for calculating the value of Beta Function accurately.
+\end{itemize}
+\subsection{Identifier - R9}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R9}
+    \item \textbf{Type: }Non-functional Requirements
+    \item \textbf{Description: }The method which use to calculate the Beta Function, should be able to calculate result without considering input values and hardware requirements.
+\end{itemize}
+\subsection{Identifier - R10}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identifier: R10}
+    \item \textbf{Type: }Functional Assumption
+    \item \textbf{Description: }To calculate the value of Beta Function, we can take approximate value of the Definite Integral using Numerical Methods.
+\end{itemize}
+
+\end{document}
