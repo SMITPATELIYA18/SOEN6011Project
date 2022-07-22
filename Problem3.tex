@@ -1,0 +1,155 @@
+\documentclass[12pt,report]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{enumitem,algorithm,algpseudocode}
+% \usepackage{lastpage}
+% \usepackage{enumerate}
+
+% \usepackage{mathrsfs}
+% \usepackage{xcolor}
+% \usepackage{graphicx}
+% \usepackage{listings}
+% \usepackage{hyperref}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\newcommand\course{SOEN 6011}
+\newcommand\hwnumber{1}
+\newcommand\NetIDa{Smit Pateliya}
+\newcommand \NetIDb{40202779}
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{Smit Pateliya\\40202779}                 
+% \chead{\textbf{\Large Problem \hwnumber}}
+\rhead{SOEN 6011 \\1st July 2022}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+\section {Algorithm for Implementing Beta Functions}
+\subsection{Algorithm - 1}
+In this algorithm, Beta function uses Gamma function to evaluate its value. Moreover, Gamma function uses factorial method to calculate its value. Hence, the factorial of the negative numbers is not possible therefore, the domain of beta function is all positive integers. i.e. $\forall p,q \in \mathbb Z^+$.
+\[B(p,q) = \frac{\Gamma p \Gamma q}{\Gamma (p+q)}\]
+\[\Gamma p = (p-1)!\]
+\subsubsection{Advantages}
+\begin{enumerate}
+    \item This algorithm is easier to implement and debug as programmer needs to implement only one factorial function to calculate beta function.
+    \item This way of calculating beta function gives more accurate answer compare to other algorithm. The second algorithm depends on the value $e$ which is infinite number.
+    \item This algorithm is faster to execute and performs better then other algorithm.
+\end{enumerate}
+
+\subsubsection{Disadvantages}
+\begin{enumerate}
+    \item This algorithm can only be used for positive real integers, as the factorial of the fraction numbers and negative number can not possible.
+\end{enumerate}
+
+\begin{algorithm}[H]
+\caption{Calculate Beta Function with the help of Factorial}
+\textbf{Require:} $p > 0$ and $q > 0$ \Comment{i.e. $p,q \in \mathbb Z^+$}\\
+\textbf{Result:} $B(p,q)$
+\begin{algorithmic}
+\Procedure{CalculateFactorial}{$value$}
+    \State $result \leftarrow 1$
+    \For{$i \leftarrow 2$ to $value$}
+    \State $result \leftarrow result * i$
+    \EndFor
+    \State\Return $result$ \Comment{Return Factorial of the value}
+    \EndProcedure
+\Statex
+
+\Procedure {CalculateGamma}{$value$}
+    \State $result = \Call{CalculateFactorial}{value-1}$
+    \State\Return $gamma$\Comment{It returns the gamma value}
+    \EndProcedure
+\Statex
+
+\Procedure {CalculateBeta}{$p, q$}
+    \State $value1 \leftarrow \Call{CalculateGamma}{p}$
+    \State $value2 \leftarrow \Call{CalculateGamma}{q}$
+    \State $r \leftarrow p+q$
+    \State $value3 \leftarrow \Call{CalculateGamma}{r}$
+    \State $beta \leftarrow \frac{value1 * value2}{value3}$
+    \State \textbf{return} $beta$\Comment{It returns the beta value}
+    \EndProcedure
+\Statex
+
+\State $result \leftarrow \Call{CalculateBeta}{p,q} $\Comment{Final result of $Beta(p,q)$}
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Algorithm - 2}
+We can implement beta function with the help of Stirling's approximation for factorials. Stirling's approximation is approximation method. This method is also for accurate results for small value of $p$.\\
+The sterling's approximation equation is represented as:
+\[B(p,q) = \frac{\Gamma p \Gamma q}{\Gamma (p+q)}\]
+\[\Gamma p = \sqrt{\frac{2\pi}{p}}(\frac{p}{e})^p\]
+
+\subsubsection{Advantages}
+\begin{enumerate}
+    \item The algorithm can compute beta function for all the positive real numbers i.e. $p > 0$ and $q > 0$.
+    \item The algorithm can evaluate result of beta function for all the positive integers i.e. $\forall p,q \in \mathbb Z^+$.
+    \item The algorithm give a approximation value for the integration formula. So, we can able to compute beta function without computing integration.
+\end{enumerate}
+
+\subsubsection{Disadvantages}
+\begin{enumerate}
+    \item This algorithm can give only accurate results for the integration formula.
+    \item This algorithm is quite complex compare to first algorithm even though we are not calculating integration formula.
+    \item There is more different between actual results and the required result for the small values when the algorithm is implemented. However, for all larger values, the difference between both values becomes narrower.
+\end{enumerate}
+
+\begin{algorithm}[H]
+\caption{Calculate Beta Function with the help of Stirling's Approximation}
+\textbf{Require:} $p > 0$ and $q > 0$ \Comment{i.e. $p,q \in \mathbb Z^+$}\\
+\textbf{Result:} $B(p,q)$
+\begin{algorithmic}
+\Procedure{CalculateSquareRoot}{$value$}
+    \State $squareRoot \leftarrow value / 2$
+    \Repeat
+        \State $result \leftarrow squareRoot$
+        \State $result = (result +(value/result))/2$
+    \Until{$(result-squareRoot) \neq 0$}
+    \State\Return $squareRoot$ \Comment{Return Square Root}
+    \EndProcedure
+\Statex
+\Procedure{CalculatePower}{$value$, $power$}
+    \State $result \leftarrow 1$
+    \For{$i \leftarrow 1$ to $power$}
+    \State $result \leftarrow result * power$
+    \EndFor
+    \State\Return $result$ \Comment{Return base to the power}
+    \EndProcedure
+\Statex
+
+\Procedure {CalculateGamma}{$value$}
+    \State $intermediateValue1 \leftarrow \Call{CalculatePower}{\frac{value}{e},value}$
+    \State $intermediateValue2 \leftarrow \Call{CalculateSquareRoot}{\frac{2\pi}{value}}$
+    \State $gamma = intermediateValue1 *intermediateValue1$
+    \State\Return $gamma$\Comment{It returns the gamma value}
+    \EndProcedure
+\Statex
+
+\Procedure {CalculateBeta}{$p, q$}
+    \State $value1 \leftarrow \Call{CalculateGamma}{p}$
+    \State $value2 \leftarrow \Call{CalculateGamma}{q}$
+    \State $r \leftarrow p+q$
+    \State $value3 \leftarrow \Call{CalculateGamma}{r}$
+    \State $beta \leftarrow \frac{value1 * value2}{value3}$
+    \State \textbf{return} $beta$\Comment{It returns the beta value}
+    \EndProcedure
+\Statex
+
+\State $result \leftarrow \Call{CalculateBeta}{p,q} $\Comment{Final result of $Beta(p,q)$}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{thebibliography}{plain}
+\bibitem{}
+Stirling's Approximation Accessed: 16-07-2022 URL: https://en.wikipedia.org/wiki/Stirling's\_approximation\#Stirling's\_formula\_for\_the\_gamma\_function
+\end{thebibliography}
+\end{document}
