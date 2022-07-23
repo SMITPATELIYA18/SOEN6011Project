@@ -3,7 +3,7 @@
  * to calculate the value beta function successfully.
  *
  * @author Smit Pateliya
- * @version 1.0
+ * @version 1.1
  */
 public final  class Beta {
     /**
@@ -17,7 +17,7 @@ public final  class Beta {
      * than 0. Else it is returning false.
      */
     boolean validateInputs(final double validate) {
-        return validate > 201 || validate < 0;
+        return validate > 200 || validate <= 0;
     }
 
     /**
@@ -37,17 +37,16 @@ public final  class Beta {
     }
 
     /**
-     * This method calculates factorial with the tail recursion.
+     * This method calculates factorial
      *
      * @param value  The value of which the factorial is to be determined
-     * @param answer This value stores result of factorials.
      * @return The factorial of value.
      */
-    int factorial(final int value, final int answer) {
+    double factorial(double value) {
         if (value <= 1) {
-            return answer;
+            return 1;
         } else {
-            return factorial(value - 1, value * answer);
+            return (value * factorial(value - 1));
         }
     }
 
@@ -78,7 +77,7 @@ public final  class Beta {
         double result = 0;
         for (int i = 0; i <= 99; i++) {
             double intermediate = power1((power * logn(value)), i);
-            result = result + intermediate / factorial(i, 1);
+            result = result + intermediate / factorial(i);
         }
         return result;
     }
@@ -113,8 +112,7 @@ public final  class Beta {
         double intermediate1 = (2 * pi) / value;
         double intermediate2 = calculateSquareRoot(intermediate1);
         double intermediate3 = value / e;
-//        double intermediate4 = calculatePower(intermediate3, value);
-        double intermediate4 = power1(intermediate3, value);
+        double intermediate4 = calculatePower(intermediate3, value);
         return intermediate2 * intermediate4;
     }
 
